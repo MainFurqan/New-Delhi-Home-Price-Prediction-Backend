@@ -2,6 +2,8 @@ from fastapi import FastAPI
 import joblib
 import numpy as np
 from pydantic import BaseModel
+import os
+import uvicorn
 
 # Load the saved pipeline (includes preprocessing + model)
 pipeline = joblib.load("model/house_price_gb_model.pkl")
@@ -68,3 +70,7 @@ def predict_price(features: HouseFeatures):
     real_price = np.exp(log_price)
 
     return {"predicted_price": round(real_price, 2)}
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
