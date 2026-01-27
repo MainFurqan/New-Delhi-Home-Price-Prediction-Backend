@@ -4,7 +4,7 @@ import numpy as np
 from pydantic import BaseModel
 
 # Load the saved pipeline (includes preprocessing + model)
-pipeline = joblib.load("backend/model/house_price_gb_model.pkl")
+pipeline = joblib.load("model/house_price_gb_model.pkl")
 
 app = FastAPI(title="House Price Prediction API")
 
